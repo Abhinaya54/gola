@@ -142,16 +142,19 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    padding: "2vw",
   },
   card: {
     background: "#F8F9ED", // cloud
     borderRadius: 16,
     boxShadow: "0 4px 24px rgba(128, 90, 213, 0.10)", // light purple shadow
     padding: "2.5rem 2rem",
-    width: 350,
+    width: "100%",
+    maxWidth: 370,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    boxSizing: "border-box",
   },
   iconBox: {
     background: "#E6E6FA", // light purple
@@ -173,6 +176,7 @@ const styles = {
     fontWeight: 700,
     color: "#3a3a3a",
     fontSize: 28,
+    textAlign: "center",
   },
   subtitle: {
     margin: "0 0 18px 0",
@@ -190,6 +194,7 @@ const styles = {
     background: "#fff",
     fontSize: 15,
     outline: "none",
+    boxSizing: "border-box",
   },
   button: {
     width: "100%",
@@ -209,6 +214,7 @@ const styles = {
     fontSize: 13,
     color: "#888",
     marginTop: 8,
+    textAlign: "center",
   },
   link: {
     color: "#805AD5",

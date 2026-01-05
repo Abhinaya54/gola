@@ -1,8 +1,8 @@
 const router = require("express").Router();
+const { getDashboard, createNote } = require("../controllers/staff.controller");
 const auth = require("../middleware/auth.middleware");
-const controller = require("../controllers/staff.controller");
 
-router.post("/notes", auth(["staff"]), controller.createNote);
-router.get("/notes", auth(["staff"]), controller.getMyNotes);
+router.get("/dashboard", auth, getDashboard);
+router.post("/notes", auth(["staff"]), createNote);
 
 module.exports = router;
