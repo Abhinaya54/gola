@@ -9,11 +9,13 @@ module.exports = async (req, res) => {
       await connectDB();
       dbConnected = true;
     }
-    // Vercel may strip the `/api` prefix when routing to this function.
-    // The Express app expects routes like `/api/health`, so ensure the
-    // request URL has the `/api` prefix before forwarding.
-    if (!req.url.startsWith('/api')) {
-      req.url = '/api' + (req.url === '/' ? '' : req.url);
+    // If the root is requested, forward explicitly to the health endpoint.
+    if (!req.url || req.url === '/' || req.url === '') {
+      req.url = '/api/health';
+    } else if (!req.url.startsWith('/api')) {
+      // For any other path that doesn't start with /api, prefix it so
+      // Express routes mounted under /api will match.
+      req.url = '/api' + (req.url.startsWith('/') ? req.url : '/' + req.url);
     }
 
     // Forward the request to the Express app instance
