@@ -3,7 +3,11 @@ import { io } from "socket.io-client";
 let socket;
 export const connectSocket = (onConnect) => {
   if (!socket) {
-    socket = io(process.env.REACT_APP_API_URL || "http://localhost:5000");
+    // Use a dedicated socket URL if provided. Note: Vercel serverless deployments
+    // do not support long-lived Socket.IO servers — socket features require a
+    // separate host (Render, Railway, Fly.io, VPS) that runs `src/server.js`.
+    const socketUrl = process.env.REACT_APP_SOCKET_URL || process.env.REACT_APP_API_URL || "http://localhost:5000";
+    socket = io(socketUrl);
     socket.on("connect", () => onConnect && onConnect(socket.id));
   }
   return socket;
